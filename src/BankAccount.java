@@ -1,3 +1,5 @@
+package src;
+
 public class BankAccount {
     private static int counter = 1;
     private int accountNumber;
