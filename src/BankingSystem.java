@@ -2,7 +2,7 @@ package src;
 
 import java.util.*;
 
-public class Main {
+public class BankingSystem {
     static Scanner sc = new Scanner(System.in);
 
     static void bankMenu() {
@@ -22,6 +22,7 @@ public class Main {
                     String u = sc.nextLine().trim();
                     System.out.print("Initial balance: ");
                     double initialBalance = sc.nextDouble();
+                    sc.nextLine();
                     Tasks.submitAccountRequest(u, initialBalance);
                     break;
                 case "2":
@@ -29,6 +30,7 @@ public class Main {
                     String du = sc.nextLine().trim();
                     System.out.print("Amount: ");
                     double dep = sc.nextDouble();
+                    sc.nextLine();
                     Tasks.deposit(du, dep);
                     break;
                 case "3":
@@ -36,6 +38,7 @@ public class Main {
                     String wu = sc.nextLine().trim();
                     System.out.print("Amount: ");
                     double wd = sc.nextDouble();
+                    sc.nextLine();
                     Tasks.withdraw(wu, wd);
                     break;
                 case "4": Tasks.displayTransactions(); break;
@@ -65,9 +68,9 @@ public class Main {
                     break;
                 case "2":
                     System.out.print("Amount: ");
-                    double dep = sc.nextDouble();
-                    Tasks.withdraw(user, dep);
-                    acc = Tasks.findByUsername(user);
+                    double wd = sc.nextDouble();
+                    sc.nextLine();
+                    Tasks.withdraw(user, wd);
                     break;
                 case "0": return;
                 default:  System.out.println("Invalid option.");
@@ -88,47 +91,45 @@ public class Main {
             System.out.println("0. Back ");
             System.out.print("Choice: ");
             switch (sc.nextLine().trim()) {
-
-    case "1": Tasks.displayAccountRequests(); break;
-    case "2": Tasks.processAccountRequest(); break;
-    case "3": Tasks.displayAccounts(); break;
-    case "4": Tasks.displayBills(); break;
-    case "5":
-        System.out.print("Bill name: ");
-        Tasks.addBill(sc.nextLine().trim());
-        break;
-    case "6": Tasks.processNextBill(); break;
-    case "0": return;
-    default:  System.out.println("Invalid option.");
+                case "1": Tasks.displayAccountRequests(); break;
+                case "2": Tasks.processAccountRequest(); break;
+                case "3": Tasks.displayAccounts(); break;
+                case "4": Tasks.displayBills(); break;
+                case "5":
+                    System.out.print("Bill name: ");
+                    Tasks.addBill(sc.nextLine().trim());
+                    break;
+                case "6": Tasks.processNextBill(); break;
+                case "0": return;
+                default:  System.out.println("Invalid option.");
             }
         }
     }
-
 // MAIN
+public static  void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Tasks.demo();
+        System.out.println("==========================");
+        System.out.println("WELCOME TO BANK SYSTEM");
+        System.out.println("==========================");
 
-public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-
-    System.out.println("\nWELCOME TO BANK SYSTEM");
-    System.out.println("==========================");
-
-    while (true) {
-        System.out.println("\nMAIN MENU");
-        System.out.println("1. Enter Bank ");
-        System.out.println("2. Enter ATM ");
-        System.out.println("3. Admin Area ");
-        System.out.println("4. Exit ");
-        System.out.print("Choice: ");
-        switch (sc.nextLine().trim()) {
-            case "1": bankMenu();  break;
-            case "2": atmMenu(sc);   break;
-            case "3": adminMenu(sc); break;
-            case "4":
-                System.out.println("Goodbye!");
-                return;
-            default:
-                System.out.println("Invalid option. Enter 1-4.");
+        while (true) {
+            System.out.println("MAIN MENU");
+            System.out.println("1. Enter Bank ");
+            System.out.println("2. Enter ATM ");
+            System.out.println("3. Admin Area ");
+            System.out.println("4. Exit ");
+            System.out.print("Choice: ");
+            switch (sc.nextLine().trim()) {
+                case "1": bankMenu();  break;
+                case "2": atmMenu(sc);  break;
+                case "3": adminMenu(sc); break;
+                case "4":
+                    System.out.println("Goodbye!");
+                    return;
+                default:
+                    System.out.println("Invalid option. Enter 1-4.");
+            }
         }
-    }
     }
 }

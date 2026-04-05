@@ -5,7 +5,7 @@ import java.util.*;
 public class Tasks {
     static LinkedList<BankAccount> accounts = new LinkedList<>(); //Task 1
     static Stack<String> transactions = new Stack<>(); //Task 3
-    static Queue<String> billQueue= new LinkedList<>(); //Task 4
+    static Queue<String> billQueue = new LinkedList<>(); //Task 4
     static Queue<String> accountRequests = new LinkedList<>(); //Task 5
     static BankAccount[] fixedAccounts = new BankAccount[3]; //Task 6
 
@@ -69,6 +69,7 @@ public class Tasks {
         }
         System.out.println("Last transaction: " + transactions.peek());
     }
+
     public static void undoLastTransaction() {
         if (transactions.isEmpty()) {
             System.out.println("No transactions found");
@@ -76,6 +77,7 @@ public class Tasks {
         }
         System.out.println("Undo : " + transactions.pop() + " removed");
     }
+
     public static void displayTransactions() {
         if (transactions.isEmpty()) {
             System.out.println("No transactions found");
@@ -105,8 +107,8 @@ public class Tasks {
             System.out.print("Remaining: ");
             for (String b : billQueue) {
                 System.out.print(b + " ");
-                System.out.println();
             }
+            System.out.println();
         }
         else
             System.out.println("No bills found");
@@ -137,8 +139,8 @@ public class Tasks {
         }
         String request = accountRequests.poll();
         String[] parts = request.split("\\|");
-        String username = parts[0];
-        double initialBalance = Double.parseDouble(parts[1]);
+        String username = parts[0].trim();
+        double initialBalance = Double.parseDouble(parts[1].trim());
         addAccount(username, initialBalance);
         System.out.println("Request approved: " + username);
     }
@@ -157,19 +159,19 @@ public class Tasks {
 
     //Task 6
     public static void fixedArray() {
-        fixedAccounts[0] = new BankAccount("Amir",340000);
-        fixedAccounts[1] = new BankAccount("Adil",570000);
-        fixedAccounts[2] = new BankAccount("Zaura",420000);
+        fixedAccounts[0] = new BankAccount("Amir", 340000);
+        fixedAccounts[1] = new BankAccount("Adil", 570000);
+        fixedAccounts[2] = new BankAccount("Zaura", 420000);
     }
 
     public static void displayFixedArray() {
         System.out.println("Fixed Array:");
         for (int i = 0; i < fixedAccounts.length; i++) {
-            System.out.println(i+1 + " : " + fixedAccounts[i]);
+            System.out.println((i + 1) + " : " + fixedAccounts[i]);
         }
     }
 
-    public static void main(String[] args) {
+    public static void demo() {
         System.out.println("------Task 1------");
         addAccount("Ali", 150000);
         addAccount("Sara", 220000);
