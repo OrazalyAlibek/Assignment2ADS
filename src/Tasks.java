@@ -4,7 +4,8 @@ import java.util.*;
 
 public class Tasks {
     static LinkedList<BankAccount> accounts = new LinkedList<>(); //Task 1
-    static Stack<String> transactions = new Stack<>(); //Task 3
+    //static Stack<String> transactions = new Stack<>(); //Task 3
+    static Stack transactions = new Stack(100);
     static Queue<String> billQueue = new LinkedList<>(); //Task 4
     static Queue<String> accountRequests = new LinkedList<>(); //Task 5
     static BankAccount[] fixedAccounts = new BankAccount[3]; //Task 6
@@ -84,11 +85,21 @@ public class Tasks {
             return;
         }
         System.out.println("Transactions list:");
-        List<String> list = new ArrayList<>(transactions);
-        Collections.sort(list);
-        for (String transaction : list) {
+        //List<String> list = new ArrayList<>(transactions);
+
+        Stack temp = new Stack(100);
+        while (!transactions.isEmpty()){
+            String transaction = transactions.pop();
             System.out.println(transaction);
+            temp.push(transaction);
         }
+        while (!temp.isEmpty()) {
+            transactions.push(temp.pop());
+        }
+
+        //Collections.sort(list);
+        //for (String transaction : list) {
+            //System.out.println(transaction);
     }
 
     //Task 4
